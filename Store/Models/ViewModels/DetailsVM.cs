@@ -6,12 +6,18 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Store.Models;
 
-namespace Store.Models
+namespace Store.Models.ViewModels
 {
-    public static class WC
+    public class DetailsVM
     {
-        public static string ImagePath = @"\images\product\";
-        public static string SessionCart = "ShoppingCartSession";
+        public DetailsVM()
+        {
+            Product = new Product();
+        }
+
+        public Product Product { get; set; }
+        public bool IsExistInCard { get; set; }
     }
 }

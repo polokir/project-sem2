@@ -28,7 +28,13 @@ namespace Store
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddHttpContextAccessor();
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(10);
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
         }
 
@@ -51,6 +57,7 @@ namespace Store
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
