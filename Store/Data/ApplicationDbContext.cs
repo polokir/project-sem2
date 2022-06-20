@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Store.Models;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Store.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
@@ -20,6 +21,8 @@ namespace Store.Data
         public DbSet<ApplicationType> Types { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
     }
